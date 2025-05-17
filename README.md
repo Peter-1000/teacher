@@ -8,6 +8,7 @@
     git clone https://github.com/Peter-1000/teacher
     cd project
     cp .env.example .env
+    composer install
     php artisan project:start
 
 you may access the website at

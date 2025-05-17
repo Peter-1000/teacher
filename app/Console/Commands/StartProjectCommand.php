@@ -13,19 +13,6 @@ class StartProjectCommand extends Command
 
     public function handle()
     {
-        // Install composer
-        $this->info('Installing Composer dependencies...');
-        exec('composer install', $output, $result);
-
-        if ($result !== 0) {
-            $this->error('Composer install failed!');
-            return 1;
-        }
-
-        foreach ($output as $line) {
-            $this->line($line);
-        }
-
         // Generate key
         $this->info('Key generating...');
         Artisan::call('key:generate');
