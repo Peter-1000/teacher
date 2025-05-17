@@ -9,7 +9,7 @@ class StartProjectCommand extends Command
 {
     protected $signature = 'project:start';
 
-    protected $description = 'Start the project by running composer install, key:generate, migrate, seed, and serve';
+    protected $description = 'Start the project by running key:generate, migrate, seed, and serve';
 
     public function handle()
     {
