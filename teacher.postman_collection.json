@@ -1,0 +1,1501 @@
+{
+	"info": {
+		"_postman_id": "320770ba-b262-4070-882c-ea0fed56592a",
+		"name": "Teacher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42502087"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "teacher login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the JSON response\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"// Check if token exists\r",
+									"if (response.token) {\r",
+									"    // Save token to environment variable\r",
+									"    pm.environment.set(\"authToken\", response.token);\r",
+									"    console.log(\"Token saved to environment: \" + response.token);\r",
+									"} else {\r",
+									"    console.warn(\"Token not found in response.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "teacher@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "teacher",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}teacher/login",
+							"host": [
+								"{{url}}teacher"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the JSON response\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"// Check if token exists\r",
+									"if (response.token) {\r",
+									"    // Save token to environment variable\r",
+									"    pm.environment.set(\"authToken\", response.token);\r",
+									"    console.log(\"Token saved to environment: \" + response.token);\r",
+									"} else {\r",
+									"    console.warn(\"Token not found in response.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}admin/login",
+							"host": [
+								"{{url}}admin"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher class schedule",
+			"item": [
+				{
+					"name": "all classes schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}classes-schedule",
+							"host": [
+								"{{url}}classes-schedule"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}classes-schedule",
+									"host": [
+										"{{url}}classes-schedule"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 16:32:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"teacher\": {\n                \"id\": 1,\n                \"name\": \"teacher\",\n                \"email\": \"teacher@gmail.com\"\n            },\n            \"subject\": {\n                \"id\": 1,\n                \"name\": \"Mathematics\"\n            },\n            \"start_time\": \"2025-05-22 09:00:00\",\n            \"end_time\": \"2025-05-22 10:30:00\",\n            \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n        },\n        {\n            \"id\": 10,\n            \"teacher\": {\n                \"id\": 1,\n                \"name\": \"teacher\",\n                \"email\": \"teacher@gmail.com\"\n            },\n            \"subject\": {\n                \"id\": 2,\n                \"name\": \"Physics\"\n            },\n            \"start_time\": \"2025-05-22 08:00:00\",\n            \"end_time\": \"2025-05-22 09:30:00\",\n            \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost:8000/api/v1/classes-schedule?page=1\",\n        \"last\": \"http://localhost:8000/api/v1/classes-schedule?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost:8000/api/v1/classes-schedule?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost:8000/api/v1/classes-schedule\",\n        \"per_page\": 15,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get class schedule by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}classes-schedule/7",
+							"host": [
+								"{{url}}classes-schedule"
+							],
+							"path": [
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}classes-schedule/7",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 16:38:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 7,\n        \"teacher\": {\n            \"id\": 1,\n            \"name\": \"teacher\",\n            \"email\": \"teacher@gmail.com\"\n        },\n        \"subject\": {\n            \"id\": 1,\n            \"name\": \"Mathematics\"\n        },\n        \"start_time\": \"2025-05-22 09:00:00\",\n        \"end_time\": \"2025-05-22 10:30:00\",\n        \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create class schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "start_time",
+									"value": "2025-06-07 10:00",
+									"type": "text"
+								},
+								{
+									"key": "end_time",
+									"value": "2025-06-07 10:30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}classes-schedule",
+							"host": [
+								"{{url}}classes-schedule"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-05-07 10:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-05-07 10:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}classes-schedule",
+									"host": [
+										"{{url}}classes-schedule"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:06:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 13,\n        \"teacher\": {\n            \"id\": 1,\n            \"name\": \"teacher\",\n            \"email\": \"teacher@gmail.com\"\n        },\n        \"subject\": {\n            \"id\": 1,\n            \"name\": \"Mathematics\"\n        },\n        \"start_time\": \"2025-05-07 10:00\",\n        \"end_time\": \"2025-05-07 10:30\",\n        \"created_at\": \"2025-05-17T17:06:31.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "conflict error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-06-07 10:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-06-07 10:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}classes-schedule",
+									"host": [
+										"{{url}}classes-schedule"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:26:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"There is a scheduling conflict with another class for this teacher.\",\n    \"status_code\": 422\n}"
+						}
+					]
+				},
+				{
+					"name": "update class schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "subject_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "start_time",
+									"value": "2025-05-17 22:00",
+									"type": "text"
+								},
+								{
+									"key": "end_time",
+									"value": "2025-05-17 22:30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}classes-schedule/11",
+							"host": [
+								"{{url}}classes-schedule"
+							],
+							"path": [
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-05-17 22:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-05-17 22:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}classes-schedule/10",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"10"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:16:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 10,\n        \"teacher\": {\n            \"id\": 1,\n            \"name\": \"teacher\",\n            \"email\": \"teacher@gmail.com\"\n        },\n        \"subject\": {\n            \"id\": 1,\n            \"name\": \"Mathematics\"\n        },\n        \"start_time\": \"2025-05-17 22:00\",\n        \"end_time\": \"2025-05-17 22:30\",\n        \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "conflict error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-05-17 22:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-05-17 22:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}classes-schedule/11",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"11"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:30:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"There is a scheduling conflict with another class for this teacher.\",\n    \"status_code\": 422\n}"
+						}
+					]
+				},
+				{
+					"name": "delete class schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}classes-schedule/1",
+							"host": [
+								"{{url}}classes-schedule"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "succss",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}classes-schedule/13",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"13"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:18:37 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "admin class schedule",
+			"item": [
+				{
+					"name": "all classes schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}classes-schedule",
+							"host": [
+								"{{url}}classes-schedule"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}classes-schedule",
+									"host": [
+										"{{url}}classes-schedule"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 16:32:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 7,\n            \"teacher\": {\n                \"id\": 1,\n                \"name\": \"teacher\",\n                \"email\": \"teacher@gmail.com\"\n            },\n            \"subject\": {\n                \"id\": 1,\n                \"name\": \"Mathematics\"\n            },\n            \"start_time\": \"2025-05-22 09:00:00\",\n            \"end_time\": \"2025-05-22 10:30:00\",\n            \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n        },\n        {\n            \"id\": 10,\n            \"teacher\": {\n                \"id\": 1,\n                \"name\": \"teacher\",\n                \"email\": \"teacher@gmail.com\"\n            },\n            \"subject\": {\n                \"id\": 2,\n                \"name\": \"Physics\"\n            },\n            \"start_time\": \"2025-05-22 08:00:00\",\n            \"end_time\": \"2025-05-22 09:30:00\",\n            \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"http://localhost:8000/api/v1/classes-schedule?page=1\",\n        \"last\": \"http://localhost:8000/api/v1/classes-schedule?page=1\",\n        \"prev\": null,\n        \"next\": null\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://localhost:8000/api/v1/classes-schedule?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http://localhost:8000/api/v1/classes-schedule\",\n        \"per_page\": 15,\n        \"to\": 2,\n        \"total\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get class schedule by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}classes-schedule/7",
+							"host": [
+								"{{url}}classes-schedule"
+							],
+							"path": [
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}classes-schedule/7",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 16:38:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 7,\n        \"teacher\": {\n            \"id\": 1,\n            \"name\": \"teacher\",\n            \"email\": \"teacher@gmail.com\"\n        },\n        \"subject\": {\n            \"id\": 1,\n            \"name\": \"Mathematics\"\n        },\n        \"start_time\": \"2025-05-22 09:00:00\",\n        \"end_time\": \"2025-05-22 10:30:00\",\n        \"created_at\": \"2025-05-17T16:25:17.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create class schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "start_time",
+									"value": "2025-06-07 10:00",
+									"type": "text"
+								},
+								{
+									"key": "end_time",
+									"value": "2025-06-07 10:30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}classes-schedule",
+							"host": [
+								"{{url}}classes-schedule"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "teacher_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-06-07 10:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-06-07 10:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}admin/classes-schedule",
+									"host": [
+										"{{url}}admin"
+									],
+									"path": [
+										"classes-schedule"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:56:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 15,\n        \"teacher\": {\n            \"id\": 2,\n            \"name\": \"Mrs. Greta Murphy\",\n            \"email\": \"davion20@example.com\"\n        },\n        \"subject\": {\n            \"id\": 1,\n            \"name\": \"Mathematics\"\n        },\n        \"start_time\": \"2025-06-07 10:00\",\n        \"end_time\": \"2025-06-07 10:30\",\n        \"created_at\": \"2025-05-17T17:56:16.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "conflict error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-06-07 10:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-06-07 10:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}classes-schedule",
+									"host": [
+										"{{url}}classes-schedule"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:26:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"There is a scheduling conflict with another class for this teacher.\",\n    \"status_code\": 422\n}"
+						}
+					]
+				},
+				{
+					"name": "update class schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "subject_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "start_time",
+									"value": "2025-05-17 22:00",
+									"type": "text"
+								},
+								{
+									"key": "end_time",
+									"value": "2025-05-17 22:30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}classes-schedule/11",
+							"host": [
+								"{{url}}classes-schedule"
+							],
+							"path": [
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "teacher_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-05-17 22:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-05-17 22:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}admin/classes-schedule/11",
+									"host": [
+										"{{url}}admin"
+									],
+									"path": [
+										"classes-schedule",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:57:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 11,\n        \"teacher\": {\n            \"id\": 1,\n            \"name\": \"teacher\",\n            \"email\": \"teacher@gmail.com\"\n        },\n        \"subject\": {\n            \"id\": 1,\n            \"name\": \"Mathematics\"\n        },\n        \"start_time\": \"2025-05-17 22:00\",\n        \"end_time\": \"2025-05-17 22:30\",\n        \"created_at\": \"2025-05-17T17:01:58.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "conflict error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "subject_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-05-17 22:00",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-05-17 22:30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}classes-schedule/11",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"11"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:30:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"There is a scheduling conflict with another class for this teacher.\",\n    \"status_code\": 422\n}"
+						}
+					]
+				},
+				{
+					"name": "delete class schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}classes-schedule/1",
+							"host": [
+								"{{url}}classes-schedule"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "succss",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}classes-schedule/13",
+									"host": [
+										"{{url}}classes-schedule"
+									],
+									"path": [
+										"13"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.18"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 May 2025 17:18:37 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	]
+}
